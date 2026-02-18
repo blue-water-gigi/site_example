@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-require __DIR__ . '/../Validator.php';
+require __DIR__ . '/../../Validator.php';
 
-$config = require __DIR__ . '/../config.php';
+$config = require __DIR__ . '/../../config.php';
 $db = new Database($config['database']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -26,4 +26,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require __DIR__ . "/../views/note-create.view.php";
+require __DIR__ . "/../../views/notes/create.view.php";
