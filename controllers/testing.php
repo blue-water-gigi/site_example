@@ -1,4 +1,6 @@
 <?php
 declare(strict_types=1);
 
-require_once __DIR__ . '/../views/testing.view.php';
+view('testing.view.php', [
+    'heading' => "About us",
+]);
