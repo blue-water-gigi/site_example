@@ -9,7 +9,7 @@
 
     <main class="relative max-w-7xl mx-auto px-6 py-16 md:py-24">
         <h1 class="block text-sm/6 font-medium text-white">Note creation</h1>
-        <form method="post" action="">
+        <form method="post" action="/notes">
             <div class="space-y-12">
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div class="sm:col-span-4">

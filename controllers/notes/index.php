@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 use Core\Database;
+use Core\App;
 
-$config = require base_path('config.php');
-$db = new Database($config['database']);
+$db = App::resolve(Database::class); // Database::class переведётся в стрингу с путём к Database;
 
 
 $notes = $db->query('select * from notes where user_id = 1')->findAll();
