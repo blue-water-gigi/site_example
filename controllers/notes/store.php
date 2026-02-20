@@ -1,5 +1,7 @@
 <?php
 
+//! controller stores the note after you submit it
+
 use Core\Validator;
 use Core\Database;
 use Core\App;

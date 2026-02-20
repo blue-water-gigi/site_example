@@ -1,31 +1,25 @@
 <?php
 declare(strict_types=1);
 
-//! controller deletes the note
+//! shows a form to edit a note
 
 use Core\Database;
 use Core\App;
 
-// $config = require base_path('/config.php');
-// $db = new Database($config['database']);
-
 $db = App::resolve(Database::class); // Database::class переведётся в стрингу с путём к Database;
-
-// dd($db);
 
 $currentUserId = 1;
 
 $note = $db->query('select * from notes where id = :id', [
-    'id' => $_POST['id'],
+    'id' => $_GET['id'],
 ])->findOrFail();
 
+//dd($note);
 authorize($note['user_id'] === $currentUserId);
 
-$db->query('delete from notes where id = :id', [
-    'id' => $_POST['id']
+
+view('/notes/edit.view.php', [
+    'heading' => "Edit a note",
+    'errors' => [],
+    'note' => $note
 ]);
-
-
-header('location: /notes');
-exit();
-

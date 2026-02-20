@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+//! controller show specific note that you choose
+
 use Core\Database;
 use Core\App;
 

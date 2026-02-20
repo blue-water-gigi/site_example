@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 
+//! controller shows all notes
+
+
 use Core\Database;
 use Core\App;
 

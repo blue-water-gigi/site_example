@@ -9,7 +9,10 @@
 
     <main class="relative max-w-7xl mx-auto px-6 py-16 md:py-24">
         <h1 class="block text-sm/6 font-medium text-white">Note creation</h1>
-        <form method="post" action="/notes">
+        <form method="post" action="/note">
+            <input type="hidden" name="_method" value="PATCH">
+            <input type="hidden" name="id" value="<?= $note['id'] ?>">
+
             <div class="space-y-12">
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div class="sm:col-span-4">
@@ -20,7 +23,7 @@
                                 <div class="shrink-0 text-base text-gray-400 select-none sm:text-sm/6">Title
                                 </div>
                                 <input id="title" type="text" name="title" placeholder="My note"
-                                    value="<?= $_POST['title'] ?? '' ?>"
+                                    value="<?= $note['title'] ?>"
                                     class="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6" />
                             </div>
                             <?php if (isset($errors['title'])) { ?>
@@ -35,7 +38,7 @@
                             <textarea placeholder="Give your note a description" id="body" name="body" rows="3" class="block w-full rounded-md bg-white/5 px-3 py-1.5
                                       text-base text-white outline-1 -outline-offset-1 outline-white/10
                                       placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2
-                                      focus:outline-indigo-500 sm:text-sm/6"><?= $_POST['body'] ?? '' ?></textarea>
+                                      focus:outline-indigo-500 sm:text-sm/6"><?= $note['body'] ?></textarea>
                         </div>
                         <?php if (isset($errors['body'])) { ?>
                             <p class="text-red-500 text-xs mt-5"><?= $errors['body'] ?></p>
@@ -46,10 +49,13 @@
 
 
             <div class="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" class="text-sm/6 font-semibold text-white"><a href="/notes">Cancel</a></button>
+                <button type="button" class="text-sm/6 font-semibold text-white">
+                    <a href="/notes">Cancel</a>
+                </button>
+
                 <button type="submit"
                     class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                    Save
+                    Update
                 </button>
             </div>
         </form>
