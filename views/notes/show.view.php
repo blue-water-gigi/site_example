@@ -14,14 +14,15 @@
                 <?= htmlspecialchars($note['body']) ?>
             </p>
 
-            <div class="mt-10">
+            <div class="mt-10 mb-5">
                 <a href="/note/edit?id=<?= $note['id'] ?>"
-                    class="text-gray-400 border border-current px-3 py-1 rounded">Edit</a>
+                    class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Edit</a>
             </div>
 
             <p class="mt-1">
-                <a class="text-blue-500 underline" href="/notes">
-                    go back...
+                <a class="rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                    href="/notes">
+                    Go back
                 </a>
             </p>
         </div>
