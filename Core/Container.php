@@ -11,7 +11,7 @@ class Container
 
     protected $bindings = [];
 
-    public function bind($key, $factoryFunc): void
+    public function bind($key, $factoryFunc)
     {
         $this->bindings[$key] = $factoryFunc;
     }

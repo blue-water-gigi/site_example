@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Core\Response;
+use Core\Session;
 
 function dd(mixed $value): void
 {
@@ -57,5 +58,7 @@ function old(string $key, mixed $default = ''): mixed
     return Core\Session::get('old')['email'] ?? $default;
 }
 
-//dd($_SERVER);
-//echo $_SERVER['REQUEST_URI'];
+// function logout()
+// {
+//     Session::destroy();
+// }

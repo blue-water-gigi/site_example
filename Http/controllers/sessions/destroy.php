@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-logout();
+use Core\Session;
+
+Session::destroy();
 
 header('location: /');
 exit();

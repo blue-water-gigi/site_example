@@ -4,23 +4,14 @@ declare(strict_types=1);
 use Core\Session;
 use Core\ValidationException;
 
-session_start();
-
 const BASE_PATH = __DIR__ . '/../';
-
 require BASE_PATH . 'Core/utils.php';
 
-spl_autoload_register(function ($class) {
-    $class = str_replace("\\", DIRECTORY_SEPARATOR, $class);
+require base_path('vendor/autoload.php');
 
-    $file = base_path("{$class}.php");
-    if (file_exists($file)) {
-        require $file;
-    }
-});
+session_start();
 
 require base_path('bootstrap.php');
-
 
 $router = new \Core\Router();
 
