@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+use Core\Session;
+
 session_start();
 
 const BASE_PATH = __DIR__ . '/../';
@@ -21,7 +23,6 @@ require base_path('bootstrap.php');
 
 $router = new \Core\Router();
 
-
 $routes = require base_path('routes.php');
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
@@ -29,8 +30,6 @@ $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 $router->route($uri, $method);
 
-
-//$id = $_GET['id'];
-//$query = "select * from posts where id = :id";
-//
-//$posts = $db->query($query, ['id' => $id])->fetch();
+// clear flashed session data
+Session::unflash();
+error_log('SESSION after unflash: ' . print_r($_SESSION, true));

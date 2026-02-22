@@ -2,4 +2,8 @@
 
 declare(strict_types=1);
 
-view('sessions/create.view.php');
+use Core\Session;
+
+view('sessions/create.view.php', [
+    'errors' => Session::get('errors') ?? [],
+]);

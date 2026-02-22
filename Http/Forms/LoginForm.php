@@ -20,7 +20,7 @@ class LoginForm
             $this->errors['password'] = 'Please provide a valid password.';
         }
 
-        return empty($errors);
+        return empty($this->errors);
     }
 
     public function getErrors(): array
