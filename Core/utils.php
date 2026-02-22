@@ -46,32 +46,12 @@ function view($path, $attributes = []): void
     require base_path('views/' . $path);
 }
 
-function login($user): void
+function redirect($path): never
 {
-    $_SESSION['user'] = [
-        'email' => $user['email'],
-    ];
-
-    session_regenerate_id(true);
+    header("location: {$path}");
+    exit();
 }
 
-function logout(): void
-{
-    $_SESSION = [];
-    session_destroy();
-
-    $params = session_get_cookie_params();
-
-    setcookie(
-        'PHPSESSID',
-        '',
-        time() - 3600,
-        $params['path'],
-        $params['domain'],
-        $params['secure'],
-        $params['httponly']
-    );
-}
 
 //dd($_SERVER);
 //echo $_SERVER['REQUEST_URI'];
