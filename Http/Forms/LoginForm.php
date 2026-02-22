@@ -4,23 +4,42 @@ declare(strict_types=1);
 
 namespace Http\Forms;
 use Core\Validator;
+use Core\ValidationException;
 
 class LoginForm
 {
     protected array $errors = [];
+    // public array $attributes = [];
 
-    public function validate(string $email, string $password): bool
+    public function __construct(public array $attributes)
     {
+        $this->attributes = $attributes;
 
-        if (!Validator::email($email)) {
+        if (!Validator::email($this->attributes['email'])) {
             $this->errors['email'] = 'Please provide a valid email address.';
         }
 
-        if (!Validator::string($password)) {
+        if (!Validator::string($this->attributes['password'])) {
             $this->errors['password'] = 'Please provide a valid password.';
         }
+    }
 
-        return empty($this->errors);
+
+    public static function validate(array $attributes): mixed
+    {
+        $instance = new static($attributes);
+
+        return $instance->getErrors() ? $instance->throw() : $instance;
+    }
+
+    public function throw()
+    {
+        ValidationException::throw($this->getErrors(), $this->attributes);
+    }
+
+    public function hasErrors(): bool
+    {
+        return (bool) count($this->errors);
     }
 
     public function getErrors(): array
@@ -28,8 +47,10 @@ class LoginForm
         return $this->errors;
     }
 
-    public function setError(string $field, string $error): void
+    public function setError(string $field, string $error): static
     {
         $this->errors[$field] = $error;
+
+        return $this;
     }
 }
