@@ -39,19 +39,23 @@ function base_path(string $path): string
     return BASE_PATH . $path;
 }
 
-function view($path, $attributes = []): void
+function view(string $path, mixed $attributes = []): void
 {
     extract($attributes);
 
     require base_path('views/' . $path);
 }
 
-function redirect($path): never
+function redirect(string $path): never
 {
     header("location: {$path}");
     exit();
 }
 
+function old(string $key, mixed $default = ''): mixed
+{
+    return Core\Session::get('old')['email'] ?? $default;
+}
 
 //dd($_SERVER);
 //echo $_SERVER['REQUEST_URI'];
