@@ -14,8 +14,11 @@
                 class="<?= urlIs('/about') ? 'text-gray-100' : 'text-gray-700' ?> hover:text-white hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.7)] transition">About</a>
             <a href="/testing"
                 class="<?= urlIs('/testing') ? 'text-gray-100' : 'text-gray-700' ?> hover:text-white hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.7)] transition">Testing</a>
-            <a href="/notes"
-                class="<?= urlIs('/notes') ? 'text-gray-100' : 'text-gray-700' ?> hover:text-white hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.7)] transition">Notes</a>
+
+            <?php if ($_SESSION['user'] ?? false) { ?>
+                <a href="/notes"
+                    class="<?= urlIs('/notes') ? 'text-gray-100' : 'text-gray-700' ?> hover:text-white hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.7)] transition">Notes</a>
+            <?php } ?>
         </nav>
 
         <?php if ($_SESSION['user'] ?? false) { ?>
@@ -27,10 +30,11 @@
                     <!-- Аватар с иконкой пользователя -->
                     <div
                         class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white text-sm font-medium shadow-lg shadow-purple-900/30">
-                        JD
+                        <?= strtoupper($_SESSION['user']['email'][0]) ?>
                     </div>
                     <!-- Имя пользователя (опционально) -->
-                    <span class="text-sm text-gray-300 pr-2 group-hover:text-white transition">John Doe</span>
+                    <span
+                        class="text-sm text-gray-300 pr-2 group-hover:text-white transition"><?= $_SESSION['user']['email'] ?></span>
                     <!-- Маленькая стрелочка для индикации меню -->
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="h-4 w-4 text-gray-400 group-hover:text-purple-300 transition" fill="none" viewBox="0 0 24 24"
@@ -42,21 +46,35 @@
                 <div
                     class="absolute right-0 mt-2 w-48 py-2 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-purple-900/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                     <a href="#"
-                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-500/10 hover:text-white hover:pl-6 transition-all">Профиль</a>
+                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-500/10 hover:text-white hover:pl-6 transition-all">Profile</a>
                     <a href="#"
-                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-500/10 hover:text-white hover:pl-6 transition-all">Настройки</a>
+                        class="block px-4 py-2 text-sm text-gray-300 hover:bg-purple-500/10 hover:text-white hover:pl-6 transition-all">Settings</a>
                     <div class="border-t border-white/10 my-1"></div>
-                    <a href="#"
-                        class="block px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 hover:pl-6 transition-all">Выйти</a>
+                    <form action="/sessions" method="POST" class="w-full">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button type="submit"
+                            class="block w-full px-4 py-2 text-sm text-left text-red-400 hover:bg-red-500/10 hover:text-red-300 hover:pl-6 transition-all">
+                            Log out
+                        </button>
+                    </form>
                 </div>
             </div>
         <?php } else { ?>
-            <a href="/register">
-                <button
-                    class="hidden md:block px-5 py-2 text-sm font-medium rounded-full border border-purple-500/50 text-purple-200 bg-purple-500/10 hover:bg-purple-500/20 hover:border-purple-400 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition duration-300">
-                    Register
-                </button>
-            </a>
+            <div
+                class="hidden md:flex items-center gap-3 px-4 py-2 rounded-2xl backdrop-blur-sm transition-all duration-300">
+                <a href="/register">
+                    <button
+                        class="hidden md:block px-5 py-2 text-sm font-medium rounded-full border border-purple-500/50 text-purple-200 bg-purple-500/10 hover:bg-purple-500/20 hover:border-purple-400 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition duration-300">
+                        Register
+                    </button>
+                </a>
+                <a href="/login">
+                    <button
+                        class="hidden md:block px-5 py-2 text-sm font-medium rounded-full border border-purple-500/50 text-purple-200 bg-purple-500/10 hover:bg-purple-500/20 hover:border-purple-400 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition duration-300">
+                        Log in
+                    </button>
+                </a>
+            </div>
         <?php } ?>
 
     </div>
