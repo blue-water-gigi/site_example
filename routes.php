@@ -3,35 +3,35 @@ declare(strict_types=1);
 
 // руты через ассоциативный массив
 // return [
-//     "/" => 'controllers/index.php',
-//     "/about" => 'controllers/about.php',
-//     "/notes" => 'controllers/notes/index.php',
-//     "/note" => 'controllers/notes/show.php',
-//     "/notes/create" => 'controllers/notes/create.php',
-//     "/testing" => 'controllers/testing.php',
+//     "/" => 'index.php',
+//     "/about" => 'about.php',
+//     "/notes" => 'notes/index.php',
+//     "/note" => 'notes/show.php',
+//     "/notes/create" => 'notes/create.php',
+//     "/testing" => 'testing.php',
 // ];
 
 
-$router->get('/', 'controllers/index.php');
-$router->get('/about', 'controllers/about.php');
-$router->get('/testing', 'controllers/testing.php');
+$router->get('/', 'index.php');
+$router->get('/about', 'about.php');
+$router->get('/testing', 'testing.php');
 
-$router->get('/notes', 'controllers/notes/index.php')->only('auth');
-$router->get('/note', 'controllers/notes/show.php');
+$router->get('/notes', 'notes/index.php')->only('auth');
+$router->get('/note', 'notes/show.php');
 
-$router->get('/notes/create', 'controllers/notes/create.php');
-$router->post('/notes/create', 'controllers/notes/create.php');
-$router->post('/notes', 'controllers/notes/store.php');
+$router->get('/notes/create', 'notes/create.php');
+$router->post('/notes/create', 'notes/create.php');
+$router->post('/notes', 'notes/store.php');
 
-$router->delete('/note', 'controllers/notes/destroy.php');
+$router->delete('/note', 'notes/destroy.php');
 
-$router->get('/note/edit', 'controllers/notes/edit.php');
-$router->patch('/note', 'controllers/notes/update.php');
+$router->get('/note/edit', 'notes/edit.php');
+$router->patch('/note', 'notes/update.php');
 
-$router->get('/register', 'controllers/registration/create.php')->only('guest');
-$router->post('/register', 'controllers/registration/store.php')->only('guest');
+$router->get('/register', 'registration/create.php')->only('guest');
+$router->post('/register', 'registration/store.php')->only('guest');
 
-$router->get('/login', 'controllers/sessions/create.php')->only('guest');
-$router->post('/sessions', 'controllers/sessions/store.php')->only('guest');
+$router->get('/login', 'sessions/create.php')->only('guest');
+$router->post('/sessions', 'sessions/store.php')->only('guest');
 
-$router->delete('/sessions', 'controllers/sessions/destroy.php')->only('auth');
+$router->delete('/sessions', 'sessions/destroy.php')->only('auth');
