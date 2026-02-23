@@ -10,14 +10,14 @@ $db = App::resolve(Database::class); // Database::class переведётся �
 
 $currentUserId = 1;
 
-    $note = $db->query('select * from notes where id = :id', [
-        'id' => $_GET['id'],
-    ])->findOrFail();
+$note = $db->query('SELECT * from notes where id = :id', [
+    'id' => $_GET['id'],
+])->findOrFail();
 
-    //dd($note);
-    authorize($note['user_id'] === $currentUserId);
+//dd($note);
+authorize($note['user_id'] === $currentUserId);
 
-    view('/notes/show.view.php', [
-        'heading' => "Create a note",
-        'note' => $note
-    ]);
+view('/notes/show.view.php', [
+    'heading' => "Create a note",
+    'note' => $note
+]);

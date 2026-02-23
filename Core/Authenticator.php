@@ -8,7 +8,6 @@ class Authenticator
 {
     public function attempt(string $email, string $password): bool
     {
-
         //tracking down the user
         $user = App::resolve(Database::class)
             ->query('SELECT * FROM users WHERE email = :email', [

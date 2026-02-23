@@ -15,17 +15,16 @@ $db = App::resolve(Database::class); // Database::class переведётся �
 
 $currentUserId = 1;
 
-$note = $db->query('select * from notes where id = :id', [
+$note = $db->query('SELECT * from notes where id = :id', [
     'id' => $_POST['id'],
 ])->findOrFail();
 
 authorize($note['user_id'] === $currentUserId);
 
-$db->query('delete from notes where id = :id', [
+$db->query('DELETE from notes where id = :id', [
     'id' => $_POST['id']
 ]);
 
 
 header('location: /notes');
 exit();
-

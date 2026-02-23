@@ -14,5 +14,5 @@ test('it can resolve something out of container', function () {
     $result = $container->resolve('foo');
 
     //assert/expect
-    expect($result)->toEqual('sdfsdfds');
+    expect($result)->toEqual('bar');
 });

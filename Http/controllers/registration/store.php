@@ -28,12 +28,12 @@ if (!empty($errors)) {
 //check if theres already a account
 $db = App::resolve(Database::class);
 
-$check = $db->query('SELECT * FROM users WHERE email = :email', [
+$user = $db->query('SELECT * FROM users WHERE email = :email', [
     'email' => $email,
 ])->find();
 
 // if yes,redirect to a login page
-if ($check) {
+if ($user) {
     //someone with that email is already exists
     header('location: /');
 } else {

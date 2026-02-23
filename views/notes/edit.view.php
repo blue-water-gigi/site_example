@@ -8,7 +8,7 @@
     ?>
 
     <main class="relative max-w-7xl mx-auto px-6 py-16 md:py-24">
-        <h1 class="block text-sm/6 font-medium text-white">Note creation</h1>
+        <h1 class="block text-sm/6 font-medium text-white">Edit the note</h1>
         <form method="post" action="/note">
             <input type="hidden" name="_method" value="PATCH">
             <input type="hidden" name="id" value="<?= $note['id'] ?>">

@@ -58,6 +58,15 @@ function old(string $key, mixed $default = ''): mixed
     return Core\Session::get('old')['email'] ?? $default;
 }
 
+function login($user)
+{
+    $_SESSION['user'] = [
+        'email' => $user['email'],
+    ];
+
+    session_regenerate_id(true);
+}
+
 // function logout()
 // {
 //     Session::destroy();
